@@ -14,10 +14,19 @@ namespace Downloader
 {
     public partial class Form1 : Form
     {
+        //for MacOs version to keep it correctly. No fixed VErsion on Mono
+        void Handle_SizeChanged(object sender, EventArgs e)
+        {
+            Size = originalSize;
+        }
+        Size originalSize = new Size();
         public Form1()
         {
             InitializeComponent();
+            originalSize = Size;
+            this.SizeChanged += Handle_SizeChanged;
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -57,23 +66,31 @@ namespace Downloader
                     for (int cont = int.Parse(mtbStart.Text); cont < int.Parse(mtbEnd.Text); cont++)
                     {
                         var address = tbURL.Text.Replace("@", $"{cont.ToString(mtbformat.Text)}");
-                        var path = Path.Combine(tbSaveTo.Text, $"{cont.ToString(mtbformat.Text)}.{tbFile.Text}");
+                        var file = $"{cont.ToString(mtbformat.Text)}.{tbFile.Text}";
+                        var path = Path.Combine(tbSaveTo.Text, file);
                         try
                         {
                             wc.DownloadFile(address, path);
 
                         progressBar1.Invoke((MethodInvoker)delegate { progressBar1.Value = cont; });
-                            
+
+                            listBox1.Items.Add($"File {file} was downloaded.");
+                        }
+                        catch(HttpListenerException exhttp)
+                        {
+                            listBox1.Items.Add($"Download Error - {exhttp.Message}");
                         }
                         catch(Exception ex)
                         {
-
+                            listBox1.Items.Add($"Unexpected Error - {ex.Message}");
                         }
                     }
                 }
             }
             catch(Exception ex)
-            { }
+            { 
+                listBox1.Items.Add($"Unexpected Error - {ex.Message}");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

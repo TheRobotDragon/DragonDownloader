@@ -1,4 +1,7 @@
-﻿namespace Downloader
+﻿using System;
+using System.Drawing;
+
+namespace Downloader
 {
     partial class Form1
     {
@@ -28,6 +31,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.BackColor = Color.FromArgb(246, 246, 246);
             this.tbURL = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,6 +62,7 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(531, 20);
             this.tbURL.TabIndex = 0;
+            this.tbURL.BackColor = Color.White;
             // 
             // label1
             // 
@@ -100,15 +106,17 @@
             this.tbSaveTo.Name = "tbSaveTo";
             this.tbSaveTo.Size = new System.Drawing.Size(362, 20);
             this.tbSaveTo.TabIndex = 8;
+            this.tbSaveTo.BackColor = Color.White;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(442, 45);
+            this.button1.Location = new System.Drawing.Point(442, 50);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 9;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
@@ -128,6 +136,7 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "Download";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // progressBar1
@@ -153,6 +162,7 @@
             this.tbFile.Size = new System.Drawing.Size(119, 20);
             this.tbFile.TabIndex = 13;
             this.tbFile.Text = "jpg";
+            this.tbFile.BackColor = Color.White;
             // 
             // mtbStart
             // 
@@ -192,7 +202,7 @@
             this.groupBox1.Controls.Add(this.tbFile);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(34, 33);
+            this.groupBox1.Location = new System.Drawing.Point(34, 35);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(536, 83);
             this.groupBox1.TabIndex = 18;
@@ -235,6 +245,8 @@
             this.ResumeLayout(false);
 
         }
+
+    
 
         #endregion
 
